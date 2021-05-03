@@ -1,0 +1,40 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+     env:
+      ARM_CLIENT_ID: a657fc81-770e-42b6-8a57-23fe55132369
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: 0646b788-86c7-404c-bd41-e7f2528afe6c
+      ARM_TENANT_ID: 4fa982aa-4122-4eed-bb16-a845571fcb74
+
+    steps:
+ #     - name: Checkout Repository
+ #       uses: actions/checkout@v2
+ 
+      - name: Checkout Repository   
+        uses: actions/checkout@master
+        with:
+          repository: sreenathuser/Code_Repo
+          path: ./Code_Repo	        
+        
+      - name: Log In To Azure
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
