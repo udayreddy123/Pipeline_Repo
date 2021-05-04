@@ -39,7 +39,7 @@ jobs:
         run: terraform init
         
       - name: Terraform Plan
-        run: ./Code_Repo/main.tf terraform plan
+        run:  terraform plan ./Code_Repo/main.tf
 
     #  - name: Terraform Apply
    #   run: ./Code_Repo/main.tf terraform apply -auto-approve
