@@ -41,5 +41,5 @@ jobs:
       - name: Terraform Plan
         run:  terraform -chdir=./Code_Repo plan 
 
-    #  - name: Terraform Apply
-   #   run: ./Code_Repo/main.tf terraform apply -auto-approve
+      - name: Terraform Apply
+        run:  terraform ./Code_Repo apply -auto-approve
