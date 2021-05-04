@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.MY_PAT }}
           
       - name: Grant execute permission for Code_Repo
-        run: chmod +x ./Code_Repo
+        run: chmod +x ./Code_Repo/main.tf
         
       - name: Log In To Azure
         uses: Azure/login@v1
